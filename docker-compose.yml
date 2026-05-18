@@ -1,0 +1,63 @@
+version: "3.9"
+
+services:
+  # ── MongoDB ─────────────────────────────────────────────────────────────────
+  mongo:
+    image: mongo:7-jammy
+    container_name: tneb_mongo
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_DATABASE: tneb_bill
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - tneb_network
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 20s
+
+  # ── Backend ──────────────────────────────────────────────────────────────────
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: tneb_backend
+    restart: unless-stopped
+    environment:
+      PORT: 5000
+      MONGO_URI: mongodb://mongo:27017/tneb_bill
+      CORS_ORIGIN: http://localhost
+      NODE_ENV: production
+    depends_on:
+      mongo:
+        condition: service_healthy
+    networks:
+      - tneb_network
+    # Backend is internal only — not exposed on host
+    expose:
+      - "5000"
+
+  # ── Frontend + Nginx ─────────────────────────────────────────────────────────
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: tneb_frontend
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - tneb_network
+
+volumes:
+  mongo_data:
+    driver: local
+
+networks:
+  tneb_network:
+    driver: bridge

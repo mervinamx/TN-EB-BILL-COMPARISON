@@ -1,0 +1,168 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Rajdhani', sans-serif;
+    background: #000;
+    color: #fff;
+    overflow-x: hidden;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #111;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom, #CC0000, #FFD700);
+    border-radius: 3px;
+  }
+}
+
+@layer components {
+  .neon-border-red {
+    border: 1px solid #CC0000;
+    box-shadow: 0 0 10px #CC000055, inset 0 0 10px #CC000011;
+  }
+
+  .neon-border-gold {
+    border: 1px solid #FFD700;
+    box-shadow: 0 0 10px #FFD70055, inset 0 0 10px #FFD70011;
+  }
+
+  .neon-text-red {
+    text-shadow: 0 0 10px #CC0000, 0 0 20px #CC0000;
+  }
+
+  .neon-text-gold {
+    text-shadow: 0 0 10px #FFD700, 0 0 20px #FFD700;
+  }
+
+  .neon-text-cyan {
+    text-shadow: 0 0 10px #00FFFF, 0 0 20px #00FFFF;
+  }
+
+  .glass-card {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .glass-card-red {
+    background: rgba(204, 0, 0, 0.05);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(204, 0, 0, 0.2);
+  }
+
+  .glass-card-gold {
+    background: rgba(255, 215, 0, 0.05);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 215, 0, 0.2);
+  }
+
+  .btn-dmk {
+    @apply bg-gradient-to-r from-red-900 to-red-700 hover:from-red-700 hover:to-red-500 
+           text-white font-bold py-3 px-6 rounded-lg transition-all duration-300 
+           border border-red-500 font-body;
+    box-shadow: 0 0 20px rgba(204, 0, 0, 0.3);
+  }
+
+  .btn-tvk {
+    @apply bg-gradient-to-r from-yellow-900 to-yellow-600 hover:from-yellow-700 hover:to-yellow-400 
+           text-black font-bold py-3 px-6 rounded-lg transition-all duration-300 
+           border border-yellow-400 font-body;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+  }
+
+  .input-electric {
+    @apply bg-black/60 border border-yellow-500/50 rounded-xl text-white 
+           placeholder-gray-500 font-mono text-2xl text-center
+           focus:outline-none focus:border-yellow-400 transition-all duration-300;
+    box-shadow: 0 0 0 transparent;
+  }
+
+  .input-electric:focus {
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.3), 0 0 40px rgba(255, 215, 0, 0.1);
+  }
+
+  .gradient-text-dmk {
+    background: linear-gradient(135deg, #CC0000, #FF4444, #880000);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .gradient-text-tvk {
+    background: linear-gradient(135deg, #FFD700, #FF8C00, #FFD700);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    background-size: 200% 200%;
+    animation: gradient-x 3s ease infinite;
+  }
+
+  .particle {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    animation: float 6s ease-in-out infinite;
+  }
+}
+
+@keyframes scanline {
+  0% { top: -10%; }
+  100% { top: 110%; }
+}
+
+@keyframes electricPulse {
+  0%, 100% { opacity: 0.6; transform: scaleX(1); }
+  50% { opacity: 1; transform: scaleX(1.02); }
+}
+
+@keyframes numberTick {
+  from { transform: translateY(-100%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.scanline {
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(to right, transparent, rgba(255, 215, 0, 0.5), transparent);
+  animation: scanline 4s linear infinite;
+  pointer-events: none;
+}
+
+.electric-border {
+  position: relative;
+}
+
+.electric-border::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: linear-gradient(45deg, #CC0000, #FFD700, #CC0000, #FFD700);
+  background-size: 300% 300%;
+  animation: gradient-x 3s ease infinite;
+  z-index: -1;
+  opacity: 0.6;
+}
+
+@keyframes gradient-x {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
