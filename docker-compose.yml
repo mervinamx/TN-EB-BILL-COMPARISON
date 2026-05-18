@@ -43,8 +43,8 @@ services:
   # ── Frontend + Nginx ─────────────────────────────────────────────────────────
   frontend:
     build:
-      context: ./frontend
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: frontend/Dockerfile
     container_name: tneb_frontend
     restart: unless-stopped
     ports:
