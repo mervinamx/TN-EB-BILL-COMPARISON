@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Toaster } from 'react-hot-toast';
 import { AnimatePresence, motion } from 'framer-motion';
 import { LangProvider } from './utils/lang';
@@ -15,7 +15,15 @@ import Footer from './components/Footer';
 
 function App() {
   const [units, setUnits] = useState(null);
-  const [darkMode, setDarkMode] = useState(true);
+  const [darkMode, setDarkMode] = useState(() => {
+    const savedTheme = localStorage.getItem('tneb-theme');
+    return savedTheme ? savedTheme === 'dark' : true;
+  });
+
+  useEffect(() => {
+    localStorage.setItem('tneb-theme', darkMode ? 'dark' : 'light');
+    document.documentElement.style.colorScheme = darkMode ? 'dark' : 'light';
+  }, [darkMode]);
 
   const dmkBill = units !== null ? calculateCurrentBill(units) : 0;
   const tvkBill = units !== null ? calculateTVKBill(units) : 0;
@@ -26,11 +34,14 @@ function App() {
 
   return (
     <LangProvider>
-      <div className={darkMode ? 'dark' : ''} style={{ minHeight: '100vh', background: '#050505' }}>
+      <div
+        className={`theme-shell ${darkMode ? 'theme-dark' : 'theme-light'}`}
+        style={{ minHeight: '100vh', transition: 'background-color 0.3s ease, color 0.3s ease' }}
+      >
         <Toaster
           position="top-center"
           toastOptions={{
-            style: { background: '#1a1a1a', color: '#fff', border: '1px solid rgba(255,255,255,0.1)' },
+            style: { background: darkMode ? '#1a1a1a' : '#f8fafc', color: darkMode ? '#fff' : '#111827', border: `1px solid ${darkMode ? 'rgba(255,255,255,0.1)' : 'rgba(15,23,42,0.08)'}` },
           }}
         />
 

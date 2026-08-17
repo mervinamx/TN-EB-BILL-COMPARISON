@@ -16,6 +16,45 @@
     background: #000;
     color: #fff;
     overflow-x: hidden;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  .theme-shell {
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  .theme-shell.theme-dark {
+    background: #050505;
+    color: #fff;
+  }
+
+  .theme-shell.theme-light {
+    background: linear-gradient(180deg, #f9f7f3 0%, #f3efe8 100%);
+    color: #111827;
+  }
+
+  .theme-shell.theme-light .glass-card,
+  .theme-shell.theme-light .glass-card-red,
+  .theme-shell.theme-light .glass-card-gold {
+    background: rgba(255, 255, 255, 0.7);
+    border-color: rgba(15, 23, 42, 0.08);
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+  }
+
+  .theme-shell.theme-light .text-gray-300,
+  .theme-shell.theme-light .text-gray-400,
+  .theme-shell.theme-light .text-gray-500 {
+    color: #475569 !important;
+  }
+
+  .theme-shell.theme-light .bg-white\/5,
+  .theme-shell.theme-light .bg-white\/10 {
+    background: rgba(15, 23, 42, 0.04) !important;
+  }
+
+  .theme-shell.theme-light .border-white\/10,
+  .theme-shell.theme-light .border-white\/20 {
+    border-color: rgba(15, 23, 42, 0.1) !important;
   }
 
   ::-webkit-scrollbar {

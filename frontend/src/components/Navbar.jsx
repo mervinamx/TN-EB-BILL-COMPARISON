@@ -10,8 +10,12 @@ const Navbar = ({ darkMode, toggleDarkMode }) => {
       initial={{ y: -60, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="sticky top-0 z-50 border-b border-white/5"
-      style={{ background: 'rgba(0,0,0,0.8)', backdropFilter: 'blur(20px)' }}
+      className="sticky top-0 z-50 border-b"
+      style={{
+        background: darkMode ? 'rgba(0,0,0,0.8)' : 'rgba(255,255,255,0.82)',
+        borderColor: darkMode ? 'rgba(255,255,255,0.05)' : 'rgba(15,23,42,0.08)',
+        backdropFilter: 'blur(20px)',
+      }}
     >
       <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
         {/* Logo */}
@@ -21,7 +25,10 @@ const Navbar = ({ darkMode, toggleDarkMode }) => {
             size={20}
             style={{ filter: 'drop-shadow(0 0 6px #FFD700)' }}
           />
-          <span className="font-display text-lg tracking-widest text-white hidden sm:block">
+          <span
+            className="font-display text-lg tracking-widest hidden sm:block"
+            style={{ color: darkMode ? '#fff' : '#111827' }}
+          >
             TN EB BILL
           </span>
           <span
@@ -39,9 +46,12 @@ const Navbar = ({ darkMode, toggleDarkMode }) => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={toggleLang}
-            className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-body
-                       bg-white/5 hover:bg-white/10 text-gray-300 hover:text-white
-                       border border-white/10 transition-all duration-200"
+            className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-body border transition-all duration-200"
+            style={{
+              background: darkMode ? 'rgba(255,255,255,0.05)' : 'rgba(15,23,42,0.04)',
+              borderColor: darkMode ? 'rgba(255,255,255,0.1)' : 'rgba(15,23,42,0.08)',
+              color: darkMode ? '#d1d5db' : '#475569',
+            }}
           >
             <FaLanguage size={14} />
             <span className="hidden sm:inline">
@@ -54,8 +64,12 @@ const Navbar = ({ darkMode, toggleDarkMode }) => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={toggleDarkMode}
-            className="p-2 rounded-lg bg-white/5 hover:bg-white/10 text-gray-300 
-                       hover:text-white border border-white/10 transition-all duration-200"
+            className="p-2 rounded-lg border transition-all duration-200"
+            style={{
+              background: darkMode ? 'rgba(255,255,255,0.05)' : 'rgba(15,23,42,0.04)',
+              borderColor: darkMode ? 'rgba(255,255,255,0.1)' : 'rgba(15,23,42,0.08)',
+              color: darkMode ? '#d1d5db' : '#475569',
+            }}
           >
             {darkMode ? <FaSun size={14} /> : <FaMoon size={14} />}
           </motion.button>
