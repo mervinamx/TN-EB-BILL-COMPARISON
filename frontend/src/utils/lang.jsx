@@ -3,7 +3,7 @@ import { createContext, useContext, useState } from 'react';
 const translations = {
   en: {
     title: 'TN EB Bill Comparison',
-    subtitle: 'DMK Current Tariff vs TVK 200-Units Free Scheme',
+    subtitle: 'DMK Tariff vs TVK 200-Units Free Scheme',
     heroDesc: 'Enter your monthly electricity consumption and instantly see how much you save under the TVK proposed scheme.',
     inputLabel: 'Enter Units Consumed',
     inputPlaceholder: 'e.g. 350',
@@ -46,7 +46,7 @@ const translations = {
     inputPlaceholder: 'எ.கா. 350',
     calculate: 'கட்டணம் கணக்கிடு',
     reset: 'மீட்டமை',
-    currentTariff: 'தற்போதைய கட்டணம்',
+    Tariff: 'கட்டணம்',
     tvkScheme: 'TVK திட்டம்',
     youSave: 'நீங்கள் சேமிக்கிறீர்கள்',
     percentSaved: '% சேமிப்பு',
