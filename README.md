@@ -1,5 +1,5 @@
 # ⚡ Tamil Nadu EB Bill Comparison
-### DMK Current Tariff vs TVK 200-Units-Free Scheme
+### DMK Tariff vs TVK 200-Units-Free Scheme
 
 A full-stack, production-ready web app that lets users instantly calculate and compare their monthly electricity bill under the current DMK tariff and the proposed TVK 200-units-free scheme.
 
