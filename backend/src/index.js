@@ -9,7 +9,7 @@ import billRoutes from './routes/bill.js';
 
 const app = express();
 const PORT = process.env.PORT || 5000;
-const MONGO_URI = process.env.MONGO_URI || 'mongodb://mongo:27017/tneb_bill';
+const MONGO_URI = process.env.MONGO_URI || 'mongodb+srv://amxmervin_db_user:NI2zu1mNoMcrfDjF@tneb-cluster.4ddmmiz.mongodb.net';
 
 // ── Middleware ──────────────────────────────────────────────────────────────
 app.use(helmet());
