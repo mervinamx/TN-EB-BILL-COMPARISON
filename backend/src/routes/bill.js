@@ -30,12 +30,23 @@ router.post('/calculate', async (req, res) => {
 
     const result = { units: u, dmkBill, tvkBill, savings, percentSaved };
 
-    // Save to DB (non-blocking)
-    BillCalculation.create({
+    // Save to MongoDB
+  try {
+    const savedBill = await BillCalculation.create({
       ...result,
       userAgent: req.headers['user-agent'] || '',
       ip: req.ip || '',
-    }).catch(() => {}); // silently ignore DB errors
+    });
+  
+    console.log('✅ Bill saved to MongoDB:', savedBill._id);
+  } catch (dbError) {
+    console.error('❌ MongoDB save error:', dbError);
+  
+    return res.status(500).json({
+      success: false,
+      error: 'Failed to save bill to MongoDB',
+    });
+  }
 
     return res.json({ success: true, data: result });
   } catch (err) {
