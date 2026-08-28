@@ -30,7 +30,37 @@ function App() {
 
   const handleCalculate = (val) => {
     setUnits(val);
-  };
+    const handleCalculate = async (val) => {
+  setUnits(val);
+
+  // Don't send empty/zero values
+  if (val === null || val <= 0) {
+    return;
+  }
+
+  try {
+    const response = await fetch('/api/bill/calculate', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        units: val,
+      }),
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      console.error('❌ Bill API error:', data);
+      return;
+    }
+
+    console.log('✅ Bill saved to MongoDB:', data);
+  } catch (error) {
+    console.error('❌ Backend connection error:', error);
+  }
+};
 
   return (
     <LangProvider>
