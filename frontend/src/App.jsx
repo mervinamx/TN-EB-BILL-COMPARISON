@@ -28,9 +28,7 @@ function App() {
   const dmkBill = units !== null ? calculateCurrentBill(units) : 0;
   const tvkBill = units !== null ? calculateTVKBill(units) : 0;
 
-  const handleCalculate = (val) => {
-    setUnits(val);
-    const handleCalculate = async (val) => {
+  const handleCalculate = async (val) => {
   setUnits(val);
 
   // Don't send empty/zero values
