@@ -37,7 +37,9 @@ function App() {
   }
 
   try {
-    const response = await fetch('/api/bill/calculate', {
+    const response = await fetch(
+      'https://tneb-bill-backend.onrender.com/api/bill/calculate', 
+      {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
