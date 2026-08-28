@@ -30,7 +30,7 @@ const SlabTable = ({ units, dmkBill, tvkBill }) => {
                 : 'text-gray-500 hover:text-gray-300'
               }`}
           >
-            🔴 DMK — {t.currentTariff}
+            🔴 DMK — {t.OldTariff}
           </button>
           <button
             onClick={() => setActiveTab('tvk')}
@@ -40,7 +40,7 @@ const SlabTable = ({ units, dmkBill, tvkBill }) => {
                 : 'text-gray-500 hover:text-gray-300'
               }`}
           >
-            🟡 TVK — {t.tvkScheme}
+            🟡 TVK — {t.tvkNewScheme}
           </button>
         </div>
 
